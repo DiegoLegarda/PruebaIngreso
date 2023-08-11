@@ -8,10 +8,7 @@
 class modelo{
 
 private:
-       /* matriz t1(int rows,int cols);
-        matriz t2(int rows,int cols);
-        matriz j1(int rows,int cols);
-        matriz j2(int rows,int cols);*/
+       
         float Aiz;
         float Ade;
         float Biz;
@@ -19,18 +16,10 @@ private:
         float l;
         float Riz;
         float Rde;
-        
-       /*void imprimirDatos ();
-        void imprimirMatrices();
-        void imprimirJacobiano();
-        double getT1(int i , int k );
-        double getT2(int i , int k );
-        double getJ1(int i , int k );
-        double getJ2(int i , int k );
-        std::vector<double > resolverEquacion();*/
-        public:
+      
+public:
        
-        modelo(float Aiz,float Ade,float Biz,float Bde,float l,float Riz,float Rde): Aiz(Aiz),Ade(Ade),Biz(Biz),Bde(Ade),l(l),Riz(Riz),Rde(Rde){}
+        modelo(float Aiz,float Ade,float Biz,float Bde,float l,float Riz,float Rde): Aiz(Aiz),Ade(Ade),Biz(Biz),Bde(Bde),l(l),Riz(Riz),Rde(Rde){}
         modelo(){};
         ~modelo() {};
         void setAiz (float a){
@@ -82,14 +71,14 @@ private:
                 matriz t2=calcular_vector_Local(theta,v, w);
                 matriz jac1(2,3);
                 matriz jac2(2,2);
-                jac1.setData({{sin(Aiz+Biz),-cos(Aiz+Biz),-l*cos(Biz)},{sin(Ade+Bde),-cos(Ade+Bde),l*cos(Bde)}});
-                jac2.setData({{1/Riz,0},{0,1/Rde}});
+                jac1.setData({{sin(Aiz+Biz),-cos(Aiz+Biz),-l*cos(Biz)},{sin(Ade+Bde),-cos(Ade+Bde),-l*cos(Bde)}});
+                jac2.setData({{1/Riz,0},{0,-1/Rde}});
                 printf("\nmatriz jacobiano\n");
                 jac1.print();
                 matriz mult1=jac1*t2;
                 printf("\n Resultado intermedio \n");
                 mult1.print();
-                matriz result=mult1*jac2;
+                matriz result=jac2*mult1;
                 printf("\n Resultado conversion \n");
                 result.print();
                 return result;
