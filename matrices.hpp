@@ -1,10 +1,9 @@
-#ifndef MATRICES_H
-#define MATRICES_H
+#ifndef MATRICES_HPP
+#define MATRICES_HPP
 #include <iostream>
 #include <vector>
 
 using namespace std;
-
 class matriz{
 private: 
     int rows;
